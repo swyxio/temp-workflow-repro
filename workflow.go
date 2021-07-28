@@ -1,8 +1,10 @@
 package app
 
 import (
+	"context"
 	"time"
 
+	"go.temporal.io/sdk/activity"
 	"go.temporal.io/sdk/workflow"
 )
 
@@ -23,8 +25,8 @@ func MyWorkflow(ctx workflow.Context, name string) (string, error) {
 	return result, nil
 }
 
-func MyActivity(ctx workflow.Context, name string) (string, error) {
-	logger := workflow.GetLogger(ctx)
+func MyActivity(ctx context.Context, name string) (string, error) {
+	logger := activity.GetLogger(ctx)
 	logger.Info("MyActivity activity started")
 	return "hello " + name, nil
 }
