@@ -19,12 +19,12 @@ func main() {
 	defer serviceClient.Close()
 
 	workflowOptions := client.StartWorkflowOptions{
-		ID:		"my-workflow",
-		TaskQueue:	"my-queue",
+		ID:		"food-delivery-workflow",
+		TaskQueue:	"my-task-queue",
 	}
 
 	workflowExecution, err := serviceClient.ExecuteWorkflow(
-		context.Background(), workflowOptions, app.MyWorkflow, "hello world")
+		context.Background(), workflowOptions, app.FoodDeliveryWorkflow, "hello world")
 	if err != nil {
 		log.Fatalln("Unable to execute workflow", err)
 	}
